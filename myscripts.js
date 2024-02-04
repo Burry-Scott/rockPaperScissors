@@ -17,8 +17,8 @@ function getPlayerChoice() {
               playerChoice != 'PAPER' &&
               playerChoice != 'SCISSORS');
     
-    switch (playerChoice) {                                         // For this game rock will be 1, paper will be 2,
-        case 'ROCK':                                                // and scissors will be 3. 
+    switch (playerChoice) {                     // For this game rock will be 1, paper will be 2,
+        case 'ROCK':                            // and scissors will be 3. 
             playerChoice = 1;
             break;
         case 'PAPER':
@@ -40,8 +40,8 @@ function playRound() {
     let y = computerChoice; 
     
     if (x == 1 && y == 1) { 
-        console.log("You each chose rock, its a tie");                                         //Incrementing the result positive for player
-        return resultOfRound;                                         // and negative for the computer. 
+        console.log("You each chose rock, its a tie");            //Incrementing the result positive for player
+        return resultOfRound;                                     // and negative for the computer. 
     } else if (x == 1 && y == 2) {        
         resultOfRound = --resultOfRound;
         console.log("You chose rock and they chose paper, you lose"); 
