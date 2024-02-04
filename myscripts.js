@@ -39,28 +39,38 @@ function playRound() {
     let x = playerChoice;
     let y = computerChoice; 
     
-    if (x == 1 && y == 1) {                                          //Incrementing the result positive for player
+    if (x == 1 && y == 1) { 
+        console.log("You each chose rock, its a tie");                                         //Incrementing the result positive for player
         return resultOfRound;                                         // and negative for the computer. 
     } else if (x == 1 && y == 2) {        
         resultOfRound = --resultOfRound;
+        console.log("You chose rock and they chose paper, you lose"); 
+        return resultOfRound;
     } else if (x == 1 && y == 3) {
         resultOfRound = ++resultOfRound;
+        console.log("You chose rock and they chose scissors, you win"); 
         return resultOfRound;
     } else if (x == 2 && y == 1) {
         resultOfRound = ++resultOfRound;
+        console.log("You chose paper and they chose rock, you win"); 
         return resultOfRound;
     } else if (x == 2 && y == 2) {
+        console.log("You each chose paper, its a tie"); 
         return resultOfRound;
     } else if (x == 2 && y == 3) {
         resultOfRound = --resultOfRound;
+        console.log("You chose paper and they chose scissors, you lose"); 
         return resultOfRound;
     } else if (x == 3 && y == 1) {
         resultOfRound = --resultOfRound;
+        console.log("You chose scissors and they chose rock, you lose"); 
         return resultOfRound;
     } else if (x == 3 && y == 2) {
         resultOfRound = ++resultOfRound;
+        console.log("You chose scissors and they chose paper, you win"); 
         return resultOfRound;
     } else {
+        console.log("You each chose scissors, its a tie"); 
         return resultOfRound;
     }
 }
@@ -71,13 +81,10 @@ function playgame() {
         playRound();
         if (resultOfRound == 1) {
             resultOfGame++;
-            console.log("You won that one.");
         } else if (resultOfRound == -1) {
             resultOfGame--;
-            console.log("You lost that one.");
         } else {
             resultOfGame = resultOfGame;
-            console.log("That one was a tie.");
         }
     }
 
