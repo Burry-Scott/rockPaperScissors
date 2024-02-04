@@ -4,7 +4,7 @@ let resultOfGame;
 let playerChoice; 
 
 function getComputerChoice() { 
-    computeChoice = 0;        
+    computerChoice = 0;        
     computerChoice = Math.floor(Math.random() * (3-0) + 1);      
     return computerChoice;
 }
