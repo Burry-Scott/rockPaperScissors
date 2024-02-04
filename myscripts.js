@@ -1,5 +1,5 @@
 let computerSelection = function getComputerChoice() {         
-    computerSelection = Math.floor(Math.random() * (3-0) + 1);
+    computerSelection = Math.floor(Math.random() * (3-0) + 1);      
     return computerSelection;
 }
 
@@ -11,6 +11,18 @@ let playerSelection = function getUserInput() {
               playerSelection != 'PAPER' &&
               playerSelection != 'SCISSORS');
 
+    switch (playerSelection) {
+        case 'ROCK':
+            playerSelection = 1;
+            break;
+        case 'PAPER':
+            playerSelection = 2;
+            break;
+        case 'SCISSORS':
+            playerSelection = 3;
+            break;
+    }
+    
     return playerSelection;
 }
 
