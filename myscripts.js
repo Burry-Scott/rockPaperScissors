@@ -9,28 +9,6 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function getPlayerChoice() {
-    do {
-        playerChoice = prompt("Please select Paper, Rock, or Scissors");
-        playerChoice = playerChoice.toUpperCase();
-    }   while(playerChoice != 'ROCK' &&
-              playerChoice != 'PAPER' &&
-              playerChoice != 'SCISSORS');
-    
-    switch (playerChoice) {                     // For this game rock will be 1, paper will be 2,
-        case 'ROCK':                            // and scissors will be 3. 
-            playerChoice = 1;
-            break;
-        case 'PAPER':
-            playerChoice = 2;
-            break;
-        case 'SCISSORS':
-            playerChoice = 3;
-            break;
-    }
-    return playerChoice;
-}
-
 
 function playRound() {
     resultOfRound = 0;
