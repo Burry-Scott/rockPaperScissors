@@ -9,11 +9,9 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-
 function playRound() {
     resultOfRound = 0;
     getComputerChoice();
-    getPlayerChoice();
     let x = playerChoice;
     let y = computerChoice; 
     
@@ -75,13 +73,16 @@ document.addEventListener('click', (event) => {
 
     switch(choice.id) {
         case 'rock' :
-            console.log(1);
+            playerChoice = 1;
+            playRound();
             break;
         case 'paper' :
-            console.log(2);
+            playerChoice = 2;
+            playRound();
             break;
         case 'scissors' :
-            console.log(3);
+            playerChoice = 3;
+            playRound();
             break;
         
     }
