@@ -1,6 +1,6 @@
 let computerChoice;
-let resultOfRound; 
-let resultOfGame;
+let resultOfRound = 0; 
+let resultOfGame = 0;
 let playerChoice; 
 
 function getComputerChoice() { 
@@ -10,45 +10,47 @@ function getComputerChoice() {
 }
 
 function playRound() {
-    resultOfRound = 0;
     getComputerChoice();
     let x = playerChoice;
     let y = computerChoice; 
-    
+    let divResult = document.createElement('div');
+    div.appendChild(divResult);
+
     if (x == 1 && y == 1) { 
-        console.log("You each chose rock, its a tie");            //Incrementing the result positive for player
+        divResult.textContent = "You each chose rock, its a tie";            //Incrementing the result positive for player
         return resultOfRound;                                     // and negative for the computer. 
     } else if (x == 1 && y == 2) {        
-        resultOfRound = --resultOfRound;
-        console.log("You chose rock and they chose paper, you lose"); 
+        divResult.textContent = "You chose rock and they chose paper, you lose"; 
+        resultOfRound--;
         return resultOfRound;
     } else if (x == 1 && y == 3) {
-        resultOfRound = ++resultOfRound;
-        console.log("You chose rock and they chose scissors, you win"); 
+        divResult.textContent = "You chose rock and they chose scissors, you win"; 
+        resultOfRound++;
         return resultOfRound;
     } else if (x == 2 && y == 1) {
-        resultOfRound = ++resultOfRound;
-        console.log("You chose paper and they chose rock, you win"); 
+        divResult.textContent = "You chose paper and they chose rock, you win"; 
+        resultOfRound++;
         return resultOfRound;
     } else if (x == 2 && y == 2) {
-        console.log("You each chose paper, its a tie"); 
+        divResult.textContent = "You each chose paper, its a tie"; 
         return resultOfRound;
     } else if (x == 2 && y == 3) {
-        resultOfRound = --resultOfRound;
-        console.log("You chose paper and they chose scissors, you lose"); 
+        divResult.textContent = "You chose paper and they chose scissors, you lose"; 
+        resultOfRound--;
         return resultOfRound;
     } else if (x == 3 && y == 1) {
-        resultOfRound = --resultOfRound;
-        console.log("You chose scissors and they chose rock, you lose"); 
+        divResult.textContent = "You chose scissors and they chose rock, you lose"; 
+        resultOfRound--;
         return resultOfRound;
     } else if (x == 3 && y == 2) {
-        resultOfRound = ++resultOfRound;
-        console.log("You chose scissors and they chose paper, you win"); 
+        divResult.textContent = "You chose scissors and they chose paper, you win"; 
+        resultOfRound++;
         return resultOfRound;
     } else {
-        console.log("You each chose scissors, its a tie"); 
+        divResult.textContent = "You each chose scissors, its a tie"; 
         return resultOfRound;
     }
+    
 }
 
 const buttonRock = document.createElement('button'); 
@@ -66,7 +68,10 @@ buttonPaper.setAttribute('id', 'paper')
 
 buttonScissors.textContent = "SCISSORS";
 document.body.appendChild(buttonScissors);
-buttonScissors.setAttribute('id', 'scissors')
+buttonScissors.setAttribute('id', 'scissors');
+
+let div = document.createElement('div');
+document.body.appendChild(div);
 
 document.addEventListener('click', (event) => {
     let choice = event.target;
@@ -86,7 +91,20 @@ document.addEventListener('click', (event) => {
             break;
         
     }
+    console.log(resultOfRound);
+    resultOfGame++;
+    if (resultOfGame === 5) {
+        let divGame = document.createElement('div');
+        div.appendChild(divGame);
+        if (resultOfRound < 0){
+            divGame.textContent = 'You lose!'
+        } else if (resultOfRound > 0) {
+            divGame.textContent = 'You Win!'
+        } else {
+            divGame.textContent = 'Its a tie!'
+        }
+        resultOfGame = 0;
+        return resultOfGame;
+    }
+    
 })
-
-const div = document.createElement('div');
-document.body.appendChild(div);
