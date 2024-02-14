@@ -1,5 +1,6 @@
 let computerChoice;
-let resultOfRound = 0; 
+let playerScore = 0;
+let compScore = 0; 
 let resultOfGame = 0;
 let playerChoice; 
 
@@ -18,37 +19,37 @@ function playRound() {
 
     if (x == 1 && y == 1) { 
         divResult.textContent = "You each chose rock, its a tie";            //Incrementing the result positive for player
-        return resultOfRound;                                     // and negative for the computer. 
+        return;                                                               // and negative for the computer. 
     } else if (x == 1 && y == 2) {        
         divResult.textContent = "You chose rock and they chose paper, you lose"; 
-        resultOfRound--;
-        return resultOfRound;
+        compScore++;
+        return compScore;
     } else if (x == 1 && y == 3) {
         divResult.textContent = "You chose rock and they chose scissors, you win"; 
-        resultOfRound++;
-        return resultOfRound;
+        playerScore++;
+        return playerScore;
     } else if (x == 2 && y == 1) {
         divResult.textContent = "You chose paper and they chose rock, you win"; 
-        resultOfRound++;
-        return resultOfRound;
+        playerScore++;
+        return playerScore;
     } else if (x == 2 && y == 2) {
         divResult.textContent = "You each chose paper, its a tie"; 
-        return resultOfRound;
+        return;
     } else if (x == 2 && y == 3) {
         divResult.textContent = "You chose paper and they chose scissors, you lose"; 
-        resultOfRound--;
-        return resultOfRound;
+        compScore++;
+        return compScore;
     } else if (x == 3 && y == 1) {
         divResult.textContent = "You chose scissors and they chose rock, you lose"; 
-        resultOfRound--;
-        return resultOfRound;
+        compScore++;
+        return compScore;
     } else if (x == 3 && y == 2) {
         divResult.textContent = "You chose scissors and they chose paper, you win"; 
-        resultOfRound++;
-        return resultOfRound;
+        playerScore++;
+        return playerScore;
     } else {
         divResult.textContent = "You each chose scissors, its a tie"; 
-        return resultOfRound;
+        return;
     }
     
 }
@@ -91,14 +92,19 @@ document.addEventListener('click', (event) => {
             break;
         
     }
-    console.log(resultOfRound);
+
     resultOfGame++;
+    let roundDiv = document.createElement('div');
+    div.appendChild(roundDiv);
+    roundDiv.textContent = "The score is Computer " + compScore + " and Player " + playerScore;
+
+
     if (resultOfGame === 5) {
         let divGame = document.createElement('div');
         div.appendChild(divGame);
-        if (resultOfRound < 0){
+        if (playerScore < compScore){
             divGame.textContent = 'You lose!'
-        } else if (resultOfRound > 0) {
+        } else if (playerScore > compScore) {
             divGame.textContent = 'You Win!'
         } else {
             divGame.textContent = 'Its a tie!'
