@@ -75,27 +75,36 @@ function playRound() {
     }
 }
 
-function playgame() {
-    resultOfGame = 0
-    for ( let i = 0; i < 5; i++) {                                     //Runs 5 rounds for each game
-        playRound();
-        if (resultOfRound == 1) {
-            resultOfGame++;
-        } else if (resultOfRound == -1) {
-            resultOfGame--;
-        } else {
-            resultOfGame = resultOfGame;
-        }
+const buttonRock = document.createElement('button'); 
+const buttonPaper = document.createElement('button'); 
+const buttonScissors = document.createElement('button'); 
+
+buttonRock.textContent = "ROCK";
+document.body.appendChild(buttonRock);
+buttonRock.setAttribute('id', 'rock')
+
+buttonPaper.textContent = "PAPER";
+document.body.appendChild(buttonPaper);
+buttonPaper.setAttribute('id', 'paper')
+
+
+buttonScissors.textContent = "SCISSORS";
+document.body.appendChild(buttonScissors);
+buttonScissors.setAttribute('id', 'scissors')
+
+document.addEventListener('click', (event) => {
+    let choice = event.target;
+
+    switch(choice.id) {
+        case 'rock' :
+            console.log(1);
+            break;
+        case 'paper' :
+            console.log(2);
+            break;
+        case 'scissors' :
+            console.log(3);
+            break;
+        
     }
-
-    if (resultOfGame > 0) {
-        console.log("You WIN!");
-    } else if (resultOfGame < 0) {
-        console.log("You LOSE!");
-    } else {
-        console.log("Its a tie!!");
-    }
-}
-
-
-playgame();
+})
