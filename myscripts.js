@@ -90,7 +90,6 @@ document.addEventListener('click', (event) => {
         case 'rock' :
             playerChoice = 1;
             playRound();
-            console.log(2);
             break;
         case 'paper' :
             playerChoice = 2;
@@ -105,7 +104,6 @@ document.addEventListener('click', (event) => {
             resultOfGame = 0;
             playerScore = 0;
             compScore = 0;
-            console.log(1);
             return;
     }
 
