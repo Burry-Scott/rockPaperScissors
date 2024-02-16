@@ -2,7 +2,31 @@ let computerChoice;
 let playerScore = 0;
 let compScore = 0; 
 let resultOfGame = 0;
-let playerChoice; 
+let playerChoice;
+
+const buttonRock = document.createElement('button'); 
+const buttonPaper = document.createElement('button'); 
+const buttonScissors = document.createElement('button');
+const buttonReset = document.createElement('button');  
+
+buttonRock.textContent = "ROCK";
+document.body.appendChild(buttonRock);
+buttonRock.setAttribute('id', 'rock');
+buttonRock.setAttribute('class', 'button');
+
+buttonPaper.textContent = "PAPER";
+document.body.appendChild(buttonPaper);
+buttonPaper.setAttribute('id', 'paper');
+buttonPaper.setAttribute('class', 'button');
+
+
+buttonScissors.textContent = "SCISSORS";
+document.body.appendChild(buttonScissors);
+buttonScissors.setAttribute('id', 'scissors');
+buttonScissors.setAttribute('class', 'button');
+
+let div = document.createElement('div');
+document.body.appendChild(div);
 
 function getComputerChoice() { 
     computerChoice = 0;        
@@ -15,13 +39,12 @@ function playRound() {
     let x = playerChoice;
     let y = computerChoice;
     let divResult = document.createElement('div'); 
-
     divResult.className = 'erase';
     div.appendChild(divResult);
 
     if (x == 1 && y == 1) { 
-        divResult.textContent = "You each chose rock.";            //Incrementing the result positive for player
-        return;                                                               // and negative for the computer. 
+        divResult.textContent = "You each chose rock.";                        
+        return;                                                               
     } else if (x == 1 && y == 2) {        
         divResult.textContent = "You chose rock and they chose paper."; 
         compScore++;
@@ -56,75 +79,61 @@ function playRound() {
     
 }
 
-const buttonRock = document.createElement('button'); 
-const buttonPaper = document.createElement('button'); 
-const buttonScissors = document.createElement('button');
-const buttonReset = document.createElement('button');  
+function createDivForScores() {
+    let roundDiv = document.createElement('div');
+    roundDiv.textContent = "The score is Computer " + compScore + " and Player " + playerScore;
+    roundDiv.className = 'erase';
+    div.appendChild(roundDiv)
+}
 
-buttonRock.textContent = "ROCK";
-document.body.appendChild(buttonRock);
-buttonRock.setAttribute('id', 'rock')
-
-buttonPaper.textContent = "PAPER";
-document.body.appendChild(buttonPaper);
-buttonPaper.setAttribute('id', 'paper')
-
-
-buttonScissors.textContent = "SCISSORS";
-document.body.appendChild(buttonScissors);
-buttonScissors.setAttribute('id', 'scissors');
-
-buttonReset.textContent = "RESET";
-document.body.appendChild(buttonReset);
-buttonReset .setAttribute('id', 'reset')
-
-
-let div = document.createElement('div');
-document.body.appendChild(div);
-
+function endRound() {
+    if (resultOfGame === 5 && playerScore < compScore){
+        alert('You lose the game!');
+        document.querySelectorAll('.erase').forEach(e => e.remove());
+        resultOfGame = 0;
+        playerScore = 0;
+        compScore = 0;
+        return;
+    } else if (resultOfGame === 5 && playerScore > compScore) {
+        alert('You win the game!');
+        document.querySelectorAll('.erase').forEach(e => e.remove());
+        resultOfGame = 0;
+        playerScore = 0;
+        compScore = 0;
+        return;
+    } else if (resultOfGame === 5 && playerScore === compScore) {
+        alert('The game is a tie!!');
+        document.querySelectorAll('.erase').forEach(e => e.remove());
+        resultOfGame = 0;
+        playerScore = 0;
+        compScore = 0;
+        return;
+    } else {
+        return;
+    }
+}
 
 document.addEventListener('click', (event) => {
     let choice = event.target;
-
-    switch(choice.id) {
-        case 'rock' :
+    if (choice.id === 'rock' && resultOfGame !== 5) {
             playerChoice = 1;
             playRound();
-            break;
-        case 'paper' :
+            createDivForScores();
+            resultOfGame++;
+            return;
+    } else if (choice.id === 'paper' && resultOfGame !== 5) {
             playerChoice = 2;
             playRound();
-            break;
-        case 'scissors' :
+            createDivForScores();
+            resultOfGame++;
+            return;
+    } else if (choice.id === 'scissors' && resultOfGame !== 5) {
             playerChoice = 3;
             playRound();
-            break;
-        case 'reset' :
-            document.querySelectorAll('.erase').forEach(e => e.remove());
-            resultOfGame = 0;
-            playerScore = 0;
-            compScore = 0;
+            createDivForScores();
+            resultOfGame++;
             return;
+    } else {
+        endRound();
     }
-
-    resultOfGame++;
-    let roundDiv = document.createElement('div');
-    div.appendChild(roundDiv);
-    roundDiv.textContent = "The score is Computer " + compScore + " and Player " + playerScore;
-    roundDiv.className = 'erase';
-
-    if (resultOfGame === 5) {
-        let divGame = document.createElement('div');
-        divGame.className = 'erase';
-        div.appendChild(divGame);
-        if (playerScore < compScore){
-            divGame.textContent = 'You lose the game! Please select RESET'
-        } else if (playerScore > compScore) {
-            divGame.textContent = 'You win the game! Please select RESET'
-        } else {
-            divGame.textContent = 'The game is a tie!! Please select RESET'
-        }
-        return resultOfGame;
-    }
-    
 })

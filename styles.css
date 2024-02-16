@@ -1,0 +1,11 @@
+div {
+    font-size: medium;
+    padding: 10px;
+}
+
+.button {
+    padding: 10px;
+    margin: 20px;
+    font-size: large;
+    display: inline-block;
+}
